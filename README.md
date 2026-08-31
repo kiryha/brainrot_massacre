@@ -4,6 +4,8 @@
 
 Brainrot Massacre is a Roblox destruction sandbox created as a father-and-son project.
 
+I am the father and I am 3d and VFX expert in the animation and film industry. Currently working as Software Engineer. Has no expirience with Roblox but comfortable with understanding general Computer Graphics pipelines and tools like Maya, Max, Houdiny, Unreal Engine, Nuke, Photoshop etc. I will need assistance with Roblox onboarding keeping in mind strong CGI background.
+
 The central feature is satisfying, stylized character destruction. Brainrot characters do not attack the player. They can remain static in the MVP and may receive simple animations in the final game.
 
 The project will be developed in two stages:
