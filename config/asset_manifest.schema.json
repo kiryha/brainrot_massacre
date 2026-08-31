@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "asset_manifest.schema.json",
+  "title": "Brainrot Massacre asset manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "characters"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    }
+  },
+  "$defs": {
+    "nullableString": {
+      "type": ["string", "null"]
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier",
+        "intactAssetName",
+        "fracturedAssetName",
+        "sourceHoudiniFile",
+        "exports",
+        "robloxAssets",
+        "version",
+        "import",
+        "assemblyOriginConvention",
+        "materials"
+      ],
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "intactAssetName": {
+          "type": "string"
+        },
+        "fracturedAssetName": {
+          "type": "string"
+        },
+        "sourceHoudiniFile": {
+          "type": "string"
+        },
+        "exports": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["intact", "fractured"],
+          "properties": {
+            "intact": {
+              "type": "string"
+            },
+            "fractured": {
+              "type": "string"
+            }
+          }
+        },
+        "robloxAssets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["intact", "fractured"],
+          "properties": {
+            "intact": {
+              "$ref": "#/$defs/nullableString"
+            },
+            "fractured": {
+              "$ref": "#/$defs/nullableString"
+            }
+          }
+        },
+        "version": {
+          "type": "string"
+        },
+        "import": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scale", "forwardAxis", "upAxis"],
+          "properties": {
+            "scale": {
+              "type": ["number", "null"],
+              "exclusiveMinimum": 0
+            },
+            "forwardAxis": {
+              "$ref": "#/$defs/nullableString"
+            },
+            "upAxis": {
+              "$ref": "#/$defs/nullableString"
+            }
+          }
+        },
+        "assemblyOriginConvention": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "materials": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["outer", "inner"],
+          "properties": {
+            "outer": {
+              "$ref": "#/$defs/nullableString"
+            },
+            "inner": {
+              "$ref": "#/$defs/nullableString"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

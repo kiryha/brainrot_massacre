@@ -1,0 +1,32 @@
+{
+  "$schema": "./asset_manifest.schema.json",
+  "schemaVersion": 1,
+  "characters": [
+    {
+      "identifier": "brainrot-basic",
+      "intactAssetName": "BrainrotBasic_Intact",
+      "fracturedAssetName": "BrainrotBasic_Fractured",
+      "sourceHoudiniFile": "houdini/scenes/brainrot_basic.hip",
+      "exports": {
+        "intact": "houdini/exports/brainrot_basic_intact.fbx",
+        "fractured": "houdini/exports/brainrot_basic_fractured.fbx"
+      },
+      "robloxAssets": {
+        "intact": null,
+        "fractured": null
+      },
+      "version": "0.0.0-placeholder",
+      "import": {
+        "scale": null,
+        "forwardAxis": null,
+        "upAxis": null
+      },
+      "assemblyOriginConvention": null,
+      "materials": {
+        "outer": null,
+        "inner": null
+      }
+    }
+  ]
+}
+
