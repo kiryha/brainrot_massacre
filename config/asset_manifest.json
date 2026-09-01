@@ -3,25 +3,27 @@
   "schemaVersion": 1,
   "characters": [
     {
-      "identifier": "brainrot-basic",
-      "intactAssetName": "BrainrotBasic_Intact",
-      "fracturedAssetName": "BrainrotBasic_Fractured",
-      "sourceHoudiniFile": "houdini/scenes/brainrot_basic.hip",
-      "exports": {
-        "intact": "houdini/exports/brainrot_basic_intact.fbx",
-        "fractured": "houdini/exports/brainrot_basic_fractured.fbx"
+      "identifier": "cappuccino-assassino",
+      "intactAssetName": "CappuccinoAssassino_Intact",
+      "fracturedAssetName": "CappuccinoAssassino_Fractured",
+      "sourceHoudiniFile": "prod/3D/scenes/characters/cappuccino_assassino/cappuccino_assassino.hip",
+      "fbxFiles": {
+        "intact": "prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx",
+        "fractured": "prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx"
       },
       "robloxAssets": {
         "intact": null,
         "fractured": null
       },
-      "version": "0.0.0-placeholder",
+      "version": "01",
       "import": {
-        "scale": null,
-        "forwardAxis": null,
-        "upAxis": null
+        "sourceUnit": "meters",
+        "scale": 1.0,
+        "targetHeightStuds": 6.0,
+        "forwardAxis": "-Z",
+        "upAxis": "Y"
       },
-      "assemblyOriginConvention": null,
+      "assemblyOriginConvention": "Ground-center at Y=0 with identity orientation; shared by intact and fractured models",
       "materials": {
         "outer": null,
         "inner": null
@@ -29,4 +31,3 @@
     }
   ]
 }
-

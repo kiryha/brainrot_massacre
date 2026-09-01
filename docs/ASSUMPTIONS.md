@@ -1,11 +1,16 @@
-# Assumptions Requiring Approval
+# Assumptions and Approvals
 
-The scaffold does not depend on these choices, but `MVP-001` does:
+Resolved:
 
-- The first character design and all source material are original and approved for a child-accessible Roblox experience.
-- The artist must approve the FBX import scale, forward/up axes, shared assembly pivot, and inner/outer material bindings after an overlap test in Studio.
-- The placeholder external paths in `config/asset_manifest.json` are relative to the production-data root; update them if the Houdini scene or export folders differ.
-- The working title is internal only until its moderation and discoverability risk is reviewed.
+- Public title: **Shoot a Brainrot**; internal production name: **Brainrot Massacre**.
+- First character: Cappuccino Assassino, using `CappuccinoAssassino_*` Studio asset names.
+- Houdini root and character scene/cache paths are defined in `docs/CONTENT_PIPELINE.md`.
+- Source units, axes, six-stud target height, shared ground-center pivot, and numeric version convention are approved.
 
-No absolute production-data path or Roblox asset ID is assumed.
+Still required for `MVP-001`:
 
+- Confirm the character design and all source material are original or appropriately licensed and suitable for a child-accessible experience.
+- Approve stylized inner/outer material bindings after the Studio overlap test.
+- Record the final Roblox asset IDs after import.
+
+No absolute machine path or Roblox asset ID is assumed in committed configuration.

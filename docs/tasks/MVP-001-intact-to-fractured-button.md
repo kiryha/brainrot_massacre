@@ -1,6 +1,6 @@
 # MVP-001: Intact-to-Fractured Button Test
 
-**Status:** Ready after asset approvals; implementation not started
+**Status:** Asset conventions approved; FBX export and Studio import pending
 
 ## Objective
 
@@ -17,21 +17,36 @@ Relevant documents:
 - `README.md`
 - `docs/CONTENT_PIPELINE.md`
 - `docs/decisions/ADR-0001-use-rojo-for-luau-source.md`
+- `docs/decisions/ADR-0002-separate-git-and-production-data.md`
 - `docs/decisions/ADR-0003-use-houdini-for-prefracture-only.md`
 - `docs/decisions/ADR-0004-use-roblox-physics-for-fragments.md`
 - `docs/decisions/ADR-0005-static-character-for-mvp.md`
 - `docs/decisions/ADR-0006-stylized-policy-compliant-destruction.md`
+- `docs/decisions/ADR-0007-production-paths-and-version-numbers.md`
 
 ## Approval gates and inputs
 
-Before implementation can be fully verified, the artist must provide or approve:
+The production paths and spatial contract are approved. Before implementation can be fully verified, the artist must provide or approve:
 
-- An original, policy-safe `BrainrotBasic_Intact` model.
-- A matching `BrainrotBasic_Fractured` model with roughly 10-20 useful pieces.
-- The FBX import scale, forward/up axes, and shared assembly pivot.
+- An original or appropriately licensed, policy-safe `CappuccinoAssassino_Intact` model.
+- A matching `CappuccinoAssassino_Fractured` model with roughly 10-20 useful pieces.
 - The stylized outer and inner materials.
 
 Record those values and the final Roblox asset IDs in `config/asset_manifest.json`. Keep paths relative to the external production-data root.
+
+## Asset contract
+
+- Houdini scene: `prod/3D/scenes/characters/cappuccino_assassino/cappuccino_assassino.hip`
+- Intact FBX: `prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx`
+- Fractured FBX: `prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx`
+- Studio place: `roblox/places/shoot_a_brainrot_mvp_01.rbxl`
+- Source unit and height: meters; 1.68 m, producing 6 Roblox studs
+- Axes: `+Y` up, `+X` character-right, `-Z` character-forward
+- Assembly pivot: ground-center at `Y = 0`, identity orientation, identical for both versions
+- Runtime/import scale: `1.0`; fix mismatches in the source/import settings rather than adding an offset
+- Version spelling: numeric only, with two digits for current scene/cache revisions and no `v` prefix
+
+Keep individual fragment pivots near their centers of volume while preserving their transforms relative to the shared assembly pivot.
 
 ## Studio asset layout
 
@@ -40,8 +55,8 @@ Import both FBX files into the external Studio place and normalize them to this 
 ```text
 ServerStorage
 └── CharacterAssets
-    ├── BrainrotBasic_Intact       (Model; all BaseParts anchored)
-    └── BrainrotBasic_Fractured    (Model; all BaseParts anchored)
+    ├── CappuccinoAssassino_Intact       (Model; all BaseParts anchored)
+    └── CappuccinoAssassino_Fractured    (Model; all BaseParts anchored)
         ├── Fragment_...
         └── Fragment_...
 
@@ -102,7 +117,7 @@ The server may create two runtime remotes under `ReplicatedStorage/Remotes`: `Re
 For one accepted request:
 
 1. Capture the current intact model pivot.
-2. Clone `BrainrotBasic_Fractured` from `ServerStorage/CharacterAssets`.
+2. Clone `CappuccinoAssassino_Fractured` from `ServerStorage/CharacterAssets`.
 3. Verify that the clone contains the expected number of `BasePart` fragments.
 4. Keep every fragment anchored while assigning collision properties.
 5. Apply the captured pivot with `Model:PivotTo()`.
@@ -188,4 +203,4 @@ The external Studio place and imported assets also change, but remain outside Gi
 
 ## Handoff notes
 
-Scaffolding intentionally contains no gameplay Luau. Begin by validating the real asset hierarchy and approved pivot/axis values; code cannot compensate reliably for a mismatched export. If Rojo is unavailable locally, install/configure it as a separate tooling step and do not mark the build verified until the command succeeds.
+Scaffolding intentionally contains no gameplay Luau. Begin with the HIP and cache paths in the asset contract, then validate the real hierarchy and approved pivot/axis values in `shoot_a_brainrot_mvp_01.rbxl`; code cannot compensate reliably for a mismatched cache. If Rojo is unavailable locally, install/configure it as a separate tooling step and do not mark the build verified until the command succeeds.

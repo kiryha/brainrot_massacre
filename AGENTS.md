@@ -10,7 +10,8 @@ Read `README.md`, `docs/CURRENT_STATE.md`, and the relevant file in `docs/tasks/
 - `config`: small manifests and schemas; never commit absolute machine paths.
 - `tests`, `tools`: automated checks and development utilities.
 - `docs`: durable plans, decisions, task briefs, and current state.
-- `OneDrive/projects/brainrot_massacre`: external production data (Houdini, exports, Studio places); it is not part of this repository.
+- `OneDrive/projects/brainrot_massacre/prod/3D`: external Houdini scenes and caches; it is not part of this repository.
+- `OneDrive/projects/brainrot_massacre/roblox`: external Studio places and imported-asset snapshots; it is not part of this repository.
 
 ## Luau and Rojo
 
@@ -31,6 +32,7 @@ Read `README.md`, `docs/CURRENT_STATE.md`, and the relevant file in `docs/tasks/
 - Do not add final-game systems while the MVP fracture test is incomplete.
 - Do not modify external production data, generated Rojo builds, Roblox place files, or imported binary assets unless the user explicitly scopes that work.
 - Preserve `README.md` as the high-level project definition. Keep supporting docs concise and update only the durable facts affected by the work.
+- Use numeric versions without a `v` prefix. Choose padding based on the expected count; scene and character-cache revisions currently use two digits (`01`).
 
 ## Definition of done
 

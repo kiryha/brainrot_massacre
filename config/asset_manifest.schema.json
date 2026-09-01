@@ -28,7 +28,7 @@
         "intactAssetName",
         "fracturedAssetName",
         "sourceHoudiniFile",
-        "exports",
+        "fbxFiles",
         "robloxAssets",
         "version",
         "import",
@@ -48,7 +48,7 @@
         "sourceHoudiniFile": {
           "type": "string"
         },
-        "exports": {
+        "fbxFiles": {
           "type": "object",
           "additionalProperties": false,
           "required": ["intact", "fractured"],
@@ -75,14 +75,22 @@
           }
         },
         "version": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^[0-9]+$"
         },
         "import": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["scale", "forwardAxis", "upAxis"],
+          "required": ["sourceUnit", "scale", "targetHeightStuds", "forwardAxis", "upAxis"],
           "properties": {
+            "sourceUnit": {
+              "type": "string"
+            },
             "scale": {
+              "type": ["number", "null"],
+              "exclusiveMinimum": 0
+            },
+            "targetHeightStuds": {
               "type": ["number", "null"],
               "exclusiveMinimum": 0
             },
@@ -114,4 +122,3 @@
     }
   }
 }
-

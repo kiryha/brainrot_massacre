@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-Brainrot Massacre is a Roblox destruction sandbox created as a father-and-son project.
+Brainrot Massacre is the internal production name for a Roblox destruction sandbox created as a father-and-son project. Players will see the public title **Shoot a Brainrot**.
 
 I am the father and I am 3d and VFX expert in the animation and film industry. Currently working as Software Engineer. Has no expirience with Roblox but comfortable with understanding general Computer Graphics pipelines and tools like Maya, Max, Houdiny, Unreal Engine, Nuke, Photoshop etc. I will need assistance with Roblox onboarding keeping in mind strong CGI background.
 
@@ -77,16 +77,24 @@ Path:
 
 This directory contains production files and large binary assets that should not normally be committed to GitHub.
 
-Proposed structure:
+Current structure for the first character:
 
     OneDrive/projects/brainrot_massacre/
-    ├── houdini/
-    │   ├── scenes/
-    │   ├── hdAs/
-    │   ├── caches/
-    │   └── exports/
+    ├── prod/
+    │   └── 3D/
+    │       ├── scenes/
+    │       │   └── characters/
+    │       │       └── cappuccino_assassino/
+    │       │           └── cappuccino_assassino.hip
+    │       └── caches/
+    │           └── characters/
+    │               └── cappuccino_assassino/
+    │                   └── 01/
+    │                       ├── cappuccino_assassino_intact.fbx
+    │                       └── cappuccino_assassino_fractured.fbx
     ├── roblox/
     │   ├── places/
+    │   │   └── shoot_a_brainrot_mvp_01.rbxl
     │   ├── imported_assets/
     │   └── local_tests/
     ├── models/
@@ -99,13 +107,15 @@ Expected contents include:
 
 - Houdini `.hip` files
 - Houdini caches
-- FBX and GLTF exports
+- FBX and GLTF cache files
 - Roblox Studio place files
 - Imported Roblox assets
 - Textures
 - Audio
 - Large reference files
 - Temporary generated content
+
+Version numbers do not use a `v` prefix. Choose padding from the expected number of revisions: one digit for rare milestone labels such as `mvp_1`, two digits for scene and character-cache revisions such as `01`, and more digits only where the expected count requires them.
 
 The Git repository must not depend on hard-coded absolute OneDrive paths. External asset locations should be configurable locally.
 
@@ -193,8 +203,8 @@ Do not add skeletal animation during the first implementation. Replacing an anim
 
 Create two asset versions:
 
-    BrainrotBasic_Intact
-    BrainrotBasic_Fractured
+    CappuccinoAssassino_Intact
+    CappuccinoAssassino_Fractured
 
 Both versions must:
 
@@ -207,7 +217,7 @@ Both versions must:
 
 ### Intact version
 
-`BrainrotBasic_Intact` may be:
+`CappuccinoAssassino_Intact` may be:
 
 - One MeshPart, or
 - A simple Model containing several MeshParts.
@@ -216,11 +226,11 @@ It should remain anchored and static.
 
 ### Fractured version
 
-`BrainrotBasic_Fractured` should be a Model containing approximately 10–20 separate MeshParts.
+`CappuccinoAssassino_Fractured` should be a Model containing approximately 10–20 separate MeshParts.
 
 Example:
 
-    BrainrotBasic_Fractured
+    CappuccinoAssassino_Fractured
     ├── Fragment_Head_001
     ├── Fragment_Head_002
     ├── Fragment_Torso_001
@@ -265,10 +275,10 @@ Houdini should not:
 
 Roblox physics will move the prepared fragments.
 
-Expected exports:
+Expected FBX cache files:
 
-    brainrot_basic_intact.fbx
-    brainrot_basic_fractured.fbx
+    prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx
+    prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx
 
 FBX is the preferred initial format. GLTF can be evaluated if it preserves the required hierarchy and materials more reliably.
 
@@ -304,7 +314,7 @@ Do not use:
 
 The target should be a Minimal or Mild Roblox content classification.
 
-“Brainrot Massacre” is the working project title. The public title should be reviewed before publishing because the word “Massacre” may create moderation or discoverability problems.
+**Brainrot Massacre** is the internal production name. **Shoot a Brainrot** is the approved public title shown to players.
 
 All characters should be original designs. Do not copy protected character models, music, voices, textures, or branding from existing Brainrot media.
 
@@ -422,7 +432,7 @@ Conceptual entries:
 - Source Houdini file
 - Exported FBX path relative to the production-data directory
 - Roblox asset identifier
-- Version
+- Numeric version without a `v` prefix
 - Import scale
 - Forward axis
 - Up axis
@@ -668,6 +678,7 @@ Initial decisions should include:
     ADR-0004-use-roblox-physics-for-fragments.md
     ADR-0005-static-character-for-mvp.md
     ADR-0006-stylized-policy-compliant-destruction.md
+    ADR-0007-production-paths-and-version-numbers.md
 
 Each decision should include:
 
