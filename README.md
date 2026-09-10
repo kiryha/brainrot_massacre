@@ -1,4 +1,5 @@
 # Brainrot Massacre
+![Data Model](images/Tralalero_Tralala.jpeg)
 
 ## Project Summary
 
