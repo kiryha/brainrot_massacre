@@ -85,14 +85,14 @@ Current structure for the first character:
     │   └── 3D/
     │       ├── scenes/
     │       │   └── characters/
-    │       │       └── cappuccino_assassino/
-    │       │           └── cappuccino_assassino.hip
+    │       │       └── tralalero_tralala/
+    │       │           └── tralalero_tralala_004.hiplc
     │       └── caches/
     │           └── characters/
-    │               └── cappuccino_assassino/
-    │                   └── 01/
-    │                       ├── cappuccino_assassino_intact.fbx
-    │                       └── cappuccino_assassino_fractured.fbx
+    │               └── tralalero_tralala/
+    │                   └── FBX/
+    │                       ├── tralalero_tralala_intact_02.fbx
+    │                       └── tralalero_tralala_fractured_02.fbx
     ├── roblox/
     │   ├── places/
     │   │   └── shoot_a_brainrot_mvp_01.rbxl
@@ -204,8 +204,8 @@ Do not add skeletal animation during the first implementation. Replacing an anim
 
 Create two asset versions:
 
-    CappuccinoAssassino_Intact
-    CappuccinoAssassino_Fractured
+    TralaleroTralala_Intact
+    TralaleroTralala_Fractured
 
 Both versions must:
 
@@ -218,7 +218,7 @@ Both versions must:
 
 ### Intact version
 
-`CappuccinoAssassino_Intact` may be:
+`TralaleroTralala_Intact` may be:
 
 - One MeshPart, or
 - A simple Model containing several MeshParts.
@@ -227,11 +227,11 @@ It should remain anchored and static.
 
 ### Fractured version
 
-`CappuccinoAssassino_Fractured` should be a Model containing approximately 10–20 separate MeshParts.
+`TralaleroTralala_Fractured` should be a Model containing approximately 10–20 separate MeshParts.
 
 Example:
 
-    CappuccinoAssassino_Fractured
+    TralaleroTralala_Fractured
     ├── Fragment_Head_001
     ├── Fragment_Head_002
     ├── Fragment_Torso_001
@@ -278,8 +278,8 @@ Roblox physics will move the prepared fragments.
 
 Expected FBX cache files:
 
-    prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx
-    prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx
+    prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_intact_02.fbx
+    prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_fractured_02.fbx
 
 FBX is the preferred initial format. GLTF can be evaluated if it preserves the required hierarchy and materials more reliably.
 

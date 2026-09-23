@@ -1,10 +1,10 @@
 # Current State
 
 - **Stage:** MVP
-- **Milestone:** Preparing Cappuccino Assassino assets for `MVP-001`
-- **Completed:** Repository scaffold; Rojo mapping; production paths; public/internal naming; character naming; scale, axes, pivot, and numeric version conventions.
-- **In progress:** None; gameplay implementation has not started.
-- **Known blockers:** The intact/fractured FBXs, approved material bindings, Roblox asset IDs, and Studio overlap test are not complete.
-- **Next three tasks:** Export cache revision `01`; import and overlap-check both models in `shoot_a_brainrot_mvp_01.rbxl`; implement `MVP-001` runtime replacement.
-- **Last verified build:** Not run; Rojo was not installed or on `PATH` during scaffold validation on 2026-08-31.
+- **Milestone:** Verifying the Tralalero Tralala `MVP-001` destruction loop
+- **Completed:** Repository scaffold; Rojo 7.7.0 CLI and matching Studio plugin installed; project version pinned in `rokit.toml`; Rojo mapping; Tralalero Tralala intact/fractured FBX revision `02` imported into `ServerStorage/CharacterAssets`; temporary button and server-authoritative replacement/physics/cleanup/respawn source implemented.
+- **In progress:** First Rojo synchronization and Roblox Studio server/client verification.
+- **Known blockers:** Roblox asset IDs and approved inner material binding are not recorded; the Studio overlap and gameplay tests are not yet recorded.
+- **Next three tasks:** Restart Studio and connect its Rojo plugin to the local server; perform the intact/fractured overlap check; run five destroy-cleanup-respawn cycles in Studio server/client mode and tune impulses.
+- **Last verified build:** `rojo build default.project.json -o build/brainrot_massacre.rbxlx` succeeded with Rojo 7.7.0 on 2026-09-23.
 - **Last successful Roblox Studio test:** Not yet run.

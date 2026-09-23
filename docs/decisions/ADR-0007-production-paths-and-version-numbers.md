@@ -10,7 +10,7 @@ The existing Houdini pipeline has established scene/cache locations and differen
 
 Use `prod/3D/scenes/characters/<character>/` for character HIP files and `prod/3D/caches/characters/<character>/<revision>/` for FBXs, relative to the production-data root. Use numeric versions without a `v` prefix. Choose padding by expected count: one digit for rare milestones, two for scene/cache revisions, and more only when needed.
 
-The first files are `cappuccino_assassino/cappuccino_assassino.hip`, cache revision `01`, and `roblox/places/shoot_a_brainrot_mvp_01.rbxl`.
+The first production asset is Tralalero Tralala. Its current scene is `tralalero_tralala/tralalero_tralala_004.hiplc`, its approved FBX pair uses revision `02`, and the Studio place is `roblox/places/shoot_a_brainrot_mvp_01.rbxl`.
 
 ## Reason
 

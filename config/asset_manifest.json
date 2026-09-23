@@ -3,19 +3,19 @@
   "schemaVersion": 1,
   "characters": [
     {
-      "identifier": "cappuccino-assassino",
-      "intactAssetName": "CappuccinoAssassino_Intact",
-      "fracturedAssetName": "CappuccinoAssassino_Fractured",
-      "sourceHoudiniFile": "prod/3D/scenes/characters/cappuccino_assassino/cappuccino_assassino.hip",
+      "identifier": "tralalero-tralala",
+      "intactAssetName": "TralaleroTralala_Intact",
+      "fracturedAssetName": "TralaleroTralala_Fractured",
+      "sourceHoudiniFile": "prod/3D/scenes/characters/tralalero_tralala/tralalero_tralala_004.hiplc",
       "fbxFiles": {
-        "intact": "prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx",
-        "fractured": "prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx"
+        "intact": "prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_intact_02.fbx",
+        "fractured": "prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_fractured_02.fbx"
       },
       "robloxAssets": {
         "intact": null,
         "fractured": null
       },
-      "version": "01",
+      "version": "02",
       "import": {
         "sourceUnit": "meters",
         "scale": 1.0,

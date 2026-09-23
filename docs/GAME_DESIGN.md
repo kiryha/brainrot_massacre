@@ -2,7 +2,7 @@
 
 ## MVP loop
 
-Join, approach a static Cappuccino Assassino character, press a temporary button, watch it break into physical pieces, then repeat after reset.
+Join, approach a static Tralalero Tralala character, press a temporary button, watch it break into physical pieces, then repeat after reset.
 
 The breakup should feel exaggerated and playful. Interior surfaces may resemble foam, candy, crystals, glowing material, or mechanical parts; they must not resemble gore.
 

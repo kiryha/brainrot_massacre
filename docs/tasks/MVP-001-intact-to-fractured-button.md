@@ -1,6 +1,6 @@
 # MVP-001: Intact-to-Fractured Button Test
 
-**Status:** Asset conventions approved; FBX export and Studio import pending
+**Status:** Runtime source implemented; Rojo sync and Studio verification pending
 
 ## Objective
 
@@ -28,17 +28,17 @@ Relevant documents:
 
 The production paths and spatial contract are approved. Before implementation can be fully verified, the artist must provide or approve:
 
-- An original or appropriately licensed, policy-safe `CappuccinoAssassino_Intact` model.
-- A matching `CappuccinoAssassino_Fractured` model with roughly 10-20 useful pieces.
+- An original or appropriately licensed, policy-safe `TralaleroTralala_Intact` model.
+- A matching `TralaleroTralala_Fractured` model with useful physical pieces.
 - The stylized outer and inner materials.
 
 Record those values and the final Roblox asset IDs in `config/asset_manifest.json`. Keep paths relative to the external production-data root.
 
 ## Asset contract
 
-- Houdini scene: `prod/3D/scenes/characters/cappuccino_assassino/cappuccino_assassino.hip`
-- Intact FBX: `prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_intact.fbx`
-- Fractured FBX: `prod/3D/caches/characters/cappuccino_assassino/01/cappuccino_assassino_fractured.fbx`
+- Houdini scene: `prod/3D/scenes/characters/tralalero_tralala/tralalero_tralala_004.hiplc`
+- Intact FBX: `prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_intact_02.fbx`
+- Fractured FBX: `prod/3D/caches/characters/tralalero_tralala/FBX/tralalero_tralala_fractured_02.fbx`
 - Studio place: `roblox/places/shoot_a_brainrot_mvp_01.rbxl`
 - Source unit and height: meters; 1.68 m, producing 6 Roblox studs
 - Axes: `+Y` up, `+X` character-right, `-Z` character-forward
@@ -55,8 +55,8 @@ Import both FBX files into the external Studio place and normalize them to this 
 ```text
 ServerStorage
 └── CharacterAssets
-    ├── CappuccinoAssassino_Intact       (Model; all BaseParts anchored)
-    └── CappuccinoAssassino_Fractured    (Model; all BaseParts anchored)
+    ├── TralaleroTralala_Intact       (Model; all BaseParts anchored)
+    └── TralaleroTralala_Fractured    (Model; all BaseParts anchored)
         ├── Fragment_...
         └── Fragment_...
 
@@ -117,7 +117,7 @@ The server may create two runtime remotes under `ReplicatedStorage/Remotes`: `Re
 For one accepted request:
 
 1. Capture the current intact model pivot.
-2. Clone `CappuccinoAssassino_Fractured` from `ServerStorage/CharacterAssets`.
+2. Clone `TralaleroTralala_Fractured` from `ServerStorage/CharacterAssets`.
 3. Verify that the clone contains the expected number of `BasePart` fragments.
 4. Keep every fragment anchored while assigning collision properties.
 5. Apply the captured pivot with `Model:PivotTo()`.
@@ -203,4 +203,4 @@ The external Studio place and imported assets also change, but remain outside Gi
 
 ## Handoff notes
 
-Scaffolding intentionally contains no gameplay Luau. Begin with the HIP and cache paths in the asset contract, then validate the real hierarchy and approved pivot/axis values in `shoot_a_brainrot_mvp_01.rbxl`; code cannot compensate reliably for a mismatched cache. If Rojo is unavailable locally, install/configure it as a separate tooling step and do not mark the build verified until the command succeeds.
+Implementation handoff, 2026-09-23: `DestructionConfig`, `CharacterSpawner`, `DestructionService`, and `DestructionButton` are implemented for the Studio templates `TralaleroTralala_Intact` and `TralaleroTralala_Fractured`. The configured spawn pivot is world identity and the current minimum accepted fragment count is two so the imported test asset can be exercised. JSON parsing and `git diff --check` pass. Rojo remains unavailable on `PATH`; no Rojo build or Studio test has been claimed. Validate the real hierarchy and approved pivot/axis values in `shoot_a_brainrot_mvp_01.rbxl`; code cannot compensate reliably for a mismatched cache.
