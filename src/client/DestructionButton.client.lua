@@ -19,42 +19,38 @@ screenGui.Name = "TemporaryDestructionGui"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = playerGui
 
-local button = Instance.new("TextButton")
+local button = Instance.new("ImageButton")
 button.Name = "DestroyButton"
-button.AnchorPoint = Vector2.new(0.5, 1)
-button.Position = UDim2.fromScale(0.5, 0.94)
-button.Size = UDim2.fromOffset(220, 56)
-button.BackgroundColor3 = Color3.fromRGB(213, 62, 62)
-button.TextColor3 = Color3.new(1, 1, 1)
-button.TextSize = 22
-button.Font = Enum.Font.GothamBold
-button.Text = "Waiting for server..."
+button.AnchorPoint = Vector2.new(1, 1)
+button.Position = UDim2.new(1, -28, 1, -28)
+button.Size = UDim2.fromOffset(104, 104)
+button.BackgroundTransparency = 1
+button.Image = "rbxassetid://122695532828355"
+button.ScaleType = Enum.ScaleType.Fit
 button.AutoButtonColor = false
 button.Active = false
 button.Parent = screenGui
 
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 10)
-corner.Parent = button
-
 local currentState = "Unavailable"
+
+local function setButtonAppearance(color: Color3, transparency: number)
+	button.ImageColor3 = color
+	button.ImageTransparency = transparency
+end
 
 local function renderState(nextState: string)
 	currentState = nextState
 
 	if nextState == STATE_READY then
-		button.Text = "DESTROY"
-		button.BackgroundColor3 = Color3.fromRGB(213, 62, 62)
+		setButtonAppearance(Color3.new(1, 1, 1), 0.18)
 		button.AutoButtonColor = true
 		button.Active = true
 	elseif nextState == STATE_BUSY then
-		button.Text = "DESTROYING..."
-		button.BackgroundColor3 = Color3.fromRGB(95, 95, 95)
+		setButtonAppearance(Color3.fromRGB(150, 150, 150), 0.42)
 		button.AutoButtonColor = false
 		button.Active = false
 	else
-		button.Text = "ASSET UNAVAILABLE"
-		button.BackgroundColor3 = Color3.fromRGB(95, 95, 95)
+		setButtonAppearance(Color3.fromRGB(120, 120, 120), 0.55)
 		button.AutoButtonColor = false
 		button.Active = false
 	end
