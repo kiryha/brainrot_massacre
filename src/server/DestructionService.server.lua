@@ -55,8 +55,6 @@ local stateRemote = getOrCreateRemote(remotes, Config.StateRemoteName)
 
 local state = STATE_UNAVAILABLE
 local activeIntact: Model? = nil
-local activeFractured: Model? = nil
-local generation = 0
 local lastRequestByPlayer: { [Player]: number } = {}
 
 local function setState(nextState: string)
@@ -104,6 +102,8 @@ end
 local function releaseFragments(fractured: Model, parts: { BasePart })
 	local boundingCFrame = fractured:GetBoundingBox()
 	local center = boundingCFrame.Position
+	local timeScale = Config.SlowMotionTimeScale
+	local gravityScale = timeScale * timeScale
 	local random = if Config.UseDebugRandomSeed
 		then Random.new(Config.DebugRandomSeed)
 		else Random.new()
@@ -113,6 +113,13 @@ local function releaseFragments(fractured: Model, parts: { BasePart })
 		part.CanCollide = true
 		part.CanTouch = false
 		part.Anchored = false
+		part.CustomPhysicalProperties = PhysicalProperties.new(
+			Config.FragmentDensity,
+			Config.FragmentFriction,
+			Config.FragmentElasticity,
+			1,
+			1
+		)
 
 		local canSetOwnership = part:CanSetNetworkOwnership()
 		if canSetOwnership then
@@ -142,9 +149,22 @@ local function releaseFragments(fractured: Model, parts: { BasePart })
 			+ Vector3.yAxis * random:NextNumber(Config.UpwardSpeedMin, Config.UpwardSpeedMax)
 			+ lateral
 
-		part:ApplyImpulse(velocity * part.AssemblyMass)
+		local assemblyMass = part.AssemblyMass
+		local gravityCompensation = Instance.new("VectorForce")
+		gravityCompensation.Name = "SlowMotionGravity"
+		gravityCompensation.ApplyAtCenterOfMass = true
+		gravityCompensation.RelativeTo = Enum.ActuatorRelativeTo.World
+		gravityCompensation.Force = Vector3.yAxis * workspace.Gravity * assemblyMass * (1 - gravityScale)
+
+		local forceAttachment = Instance.new("Attachment")
+		forceAttachment.Name = "SlowMotionGravityAttachment"
+		forceAttachment.Parent = part
+		gravityCompensation.Attachment0 = forceAttachment
+		gravityCompensation.Parent = part
+
+		part:ApplyImpulse(velocity * timeScale * assemblyMass)
 		part:ApplyAngularImpulse(
-			randomUnitVector(random) * Config.AngularImpulseStrength * part.AssemblyMass
+			randomUnitVector(random) * Config.AngularImpulseStrength * timeScale * assemblyMass
 		)
 	end
 end
@@ -163,12 +183,11 @@ local function spawnIntact(pivot: CFrame): boolean
 	return true
 end
 
-local function recoverFromFailure(pivot: CFrame, message: string)
+local function recoverFromFailure(pivot: CFrame, fractured: Model?, message: string)
 	warn(message)
 
-	if activeFractured then
-		activeFractured:Destroy()
-		activeFractured = nil
+	if fractured then
+		fractured:Destroy()
 	end
 
 	if activeIntact and activeIntact.Parent then
@@ -186,8 +205,6 @@ local function destroyCharacter()
 
 	local intact = activeIntact
 	setState(STATE_BUSY)
-	generation += 1
-	local eventGeneration = generation
 	local capturedPivot = intact:GetPivot()
 	local preparedFractured: Model? = nil
 
@@ -202,7 +219,6 @@ local function destroyCharacter()
 		end
 
 		CharacterSpawner.activatePrepared(fractured)
-		activeFractured = fractured
 
 		intact:Destroy()
 		activeIntact = nil
@@ -210,25 +226,21 @@ local function destroyCharacter()
 	end, debug.traceback)
 
 	if not success then
-		if preparedFractured and preparedFractured ~= activeFractured then
-			preparedFractured:Destroy()
-		end
-		recoverFromFailure(capturedPivot, string.format("Destruction failed: %s", tostring(failure)))
+		recoverFromFailure(
+			capturedPivot,
+			preparedFractured,
+			string.format("Destruction failed: %s", tostring(failure))
+		)
 		return
 	end
 
-	task.delay(Config.FragmentLifetimeSeconds, function()
-		if generation ~= eventGeneration then
-			return
+	local debris = preparedFractured :: Model
+	task.delay(Config.RespawnDelaySeconds, function()
+		if debris.Parent then
+			debris:Destroy()
 		end
 
-		if activeFractured then
-			activeFractured:Destroy()
-			activeFractured = nil
-		end
-
-		task.wait(Config.RespawnDelaySeconds)
-		if generation == eventGeneration then
+		if not activeIntact then
 			spawnIntact(capturedPivot)
 		end
 	end)

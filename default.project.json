@@ -2,6 +2,11 @@
   "name": "BrainrotMassacre",
   "tree": {
     "$className": "DataModel",
+    "Workspace": {
+      "$properties": {
+        "PhysicsSteppingMethod": "Fixed"
+      }
+    },
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "Shared": {
