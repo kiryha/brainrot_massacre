@@ -61,6 +61,29 @@ function CharacterSpawner.clearRuntime()
 	getRuntimeFolder():ClearAllChildren()
 end
 
+function CharacterSpawner.getSpawnPivot(): CFrame
+	local marker = Workspace:FindFirstChild(Config.SpawnMarkerName)
+	if not marker then
+		warn(string.format(
+			"Workspace.%s was not found; using DestructionConfig.SpawnPivot",
+			Config.SpawnMarkerName
+		))
+		return Config.SpawnPivot
+	end
+
+	assert(marker:IsA("BasePart"), string.format(
+		"Workspace.%s must be a Part or MeshPart",
+		Config.SpawnMarkerName
+	))
+
+	marker.Anchored = true
+	marker.CanCollide = false
+	marker.CanTouch = false
+	marker.CanQuery = false
+	marker.Transparency = 1
+	return marker.CFrame
+end
+
 function CharacterSpawner.spawnIntact(pivot: CFrame): Model
 	local clone = getTemplate(Config.IntactTemplateName):Clone()
 	local parts = collectParts(clone)

@@ -275,4 +275,4 @@ for _, player in Players:GetPlayers() do
 end
 
 CharacterSpawner.clearRuntime()
-spawnIntact(Config.SpawnPivot)
+spawnIntact(CharacterSpawner.getSpawnPivot())

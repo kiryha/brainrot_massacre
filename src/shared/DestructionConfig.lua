@@ -5,6 +5,7 @@ return {
 	IntactTemplateName = "TralaleroTralala_Intact",
 	FracturedTemplateName = "TralaleroTralala_Fractured",
 	RuntimeFolderName = "BrainrotCharacters",
+	SpawnMarkerName = "SpawnTralaleroTralala",
 
 	RemotesFolderName = "Remotes",
 	RequestRemoteName = "RequestDestruction",
@@ -13,6 +14,7 @@ return {
 	FragmentCollisionGroup = "DestructionFragments",
 	PlayerCollisionGroup = "Players",
 
+	-- Used only when Workspace does not contain SpawnMarkerName.
 	SpawnPivot = CFrame.new(),
 	MinimumFragmentCount = 2,
 	RequestCooldownSeconds = 0.75,
