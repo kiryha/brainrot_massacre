@@ -1,6 +1,6 @@
 # MVP-001: Intact-to-Fractured Button Test
 
-**Status:** Runtime source implemented; Rojo sync and Studio verification pending
+**Status:** Complete — Studio result accepted on 2026-10-01
 
 ## Objective
 
@@ -203,4 +203,4 @@ The external Studio place and imported assets also change, but remain outside Gi
 
 ## Handoff notes
 
-Implementation handoff, 2026-09-23: `DestructionConfig`, `CharacterSpawner`, `DestructionService`, and `DestructionButton` are implemented for the Studio templates `TralaleroTralala_Intact` and `TralaleroTralala_Fractured`. The configured spawn pivot is world identity and the current minimum accepted fragment count is two so the imported test asset can be exercised. JSON parsing and `git diff --check` pass. Rojo remains unavailable on `PATH`; no Rojo build or Studio test has been claimed. Validate the real hierarchy and approved pivot/axis values in `shoot_a_brainrot_mvp_01.rbxl`; code cannot compensate reliably for a mismatched cache.
+Completion handoff, 2026-10-01: The user accepted the Roblox Studio result for the temporary-button destruction loop using `TralaleroTralala_Intact` and `TralaleroTralala_Fractured`. The intact character is replaced by the fractured model, the pieces simulate, and the loop cleans up and respawns. Rojo 7.7.0 successfully built the project on 2026-09-29. Exact multi-client, cycle-count, Output-log, asset-ID, and material-binding details were not independently recorded in this task; retain them as follow-up validation rather than implying they were observed.
