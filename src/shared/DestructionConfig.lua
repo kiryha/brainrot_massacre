@@ -18,8 +18,6 @@ return {
 	SpawnPivot = CFrame.new(),
 	MinimumFragmentCount = 2,
 	RequestCooldownSeconds = 0.75,
-	-- Time until debris is removed, the intact character returns, and the button reactivates.
-	RespawnDelaySeconds = 4,
 
 	-- Scales fragment velocity, spin, and gravity without slowing the player.
 	-- 1 is real time; 0.3 is approximately 30% speed.

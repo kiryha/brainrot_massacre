@@ -136,6 +136,14 @@ Rojo should synchronize Luau source from:
 
 into Roblox Studio.
 
+### Running the Rojo server
+
+From the repository root, start the project-local Rojo server in Windows Command Prompt:
+
+    .tmp\rojo-7.7.0\rojo.exe serve default.project.json
+
+Keep the Command Prompt window open while Roblox Studio is connected to the Rojo server.
+
 The Git repository is the source of truth for:
 
 - Game logic

@@ -9,6 +9,7 @@ local CharacterSpawner = require(script.Parent.CharacterSpawner)
 
 local STATE_READY = "Ready"
 local STATE_BUSY = "Busy"
+local STATE_DESTROYED = "Destroyed"
 local STATE_UNAVAILABLE = "Unavailable"
 
 local function getOrCreateFolder(parent: Instance, name: string): Folder
@@ -234,16 +235,7 @@ local function destroyCharacter()
 		return
 	end
 
-	local debris = preparedFractured :: Model
-	task.delay(Config.RespawnDelaySeconds, function()
-		if debris.Parent then
-			debris:Destroy()
-		end
-
-		if not activeIntact then
-			spawnIntact(capturedPivot)
-		end
-	end)
+	setState(STATE_DESTROYED)
 end
 
 requestRemote.OnServerEvent:Connect(function(player: Player)
